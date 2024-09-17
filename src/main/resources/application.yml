@@ -1,2 +1,5 @@
-buckpal:
+spring:
+  application:
+    name: CleanArchitectureDemo
+demo:
   transferThreshold: 10000
