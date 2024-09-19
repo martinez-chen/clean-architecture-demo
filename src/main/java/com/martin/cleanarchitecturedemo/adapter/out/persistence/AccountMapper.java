@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
+/**
+ * Mapper class for mapping between JPA entities and domain entities.
+ */
 @Component
 public class AccountMapper {
 

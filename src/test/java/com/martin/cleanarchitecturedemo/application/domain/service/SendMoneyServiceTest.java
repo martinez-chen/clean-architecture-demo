@@ -22,6 +22,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
+/**
+ * 核心業務邏輯的測試。
+ * <p>
+ * SendMoneyServiceTest 透過 Mockito 來模擬 LoadAccountPort、AccountLock、UpdateAccountStatePort 介面，
+ * 並驗證 SendMoneyService 的 sendMoney 方法是否正確執行。
+ * <p>
+ */
 class SendMoneyServiceTest {
 
 	private final LoadAccountPort loadAccountPort =
@@ -36,16 +43,20 @@ class SendMoneyServiceTest {
 	private final SendMoneyService sendMoneyService =
 			new SendMoneyService(loadAccountPort, accountLock, updateAccountStatePort, moneyTransferProperties());
 
+	/**
+	 * 當提款失敗時，只有來源帳戶被鎖定並釋放。
+	 */
 	@Test
 	void givenWithdrawalFails_thenOnlySourceAccountIsLockedAndReleased() {
-
+		// given an account with id 41 and 42
 		AccountId sourceAccountId = new AccountId(41L);
 		Account sourceAccount = givenAnAccountWithId(sourceAccountId);
 
 		AccountId targetAccountId = new AccountId(42L);
 		Account targetAccount = givenAnAccountWithId(targetAccountId);
-
+		// given withdrawal fails
 		givenWithdrawalWillFail(sourceAccount);
+		// given deposit will succeed
 		givenDepositWillSucceed(targetAccount);
 
 		SendMoneyCommand command = new SendMoneyCommand(
@@ -53,8 +64,10 @@ class SendMoneyServiceTest {
 				targetAccountId,
 				Money.of(300L));
 
+		// when send money
 		boolean success = sendMoneyService.sendMoney(command);
 
+		// then transaction fails
 		assertThat(success).isFalse();
 
 		then(accountLock).should().lockAccount(eq(sourceAccountId));
@@ -62,6 +75,9 @@ class SendMoneyServiceTest {
 		then(accountLock).should(times(0)).lockAccount(eq(targetAccountId));
 	}
 
+	/**
+	 * 轉帳交易成功。
+	 */
 	@Test
 	void transactionSucceeds() {
 

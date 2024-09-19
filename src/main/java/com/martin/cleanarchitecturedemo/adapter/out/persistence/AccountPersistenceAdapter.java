@@ -10,6 +10,11 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+/**
+ * 操作帳戶持久化。
+ * <p>
+ * 實作載入帳戶和更新帳戶狀態的操作。
+ */
 @RequiredArgsConstructor
 @Component
 public class AccountPersistenceAdapter implements LoadAccountPort, UpdateAccountStatePort {

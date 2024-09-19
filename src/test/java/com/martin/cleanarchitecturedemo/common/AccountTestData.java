@@ -5,6 +5,9 @@ import com.martin.cleanarchitecturedemo.application.domain.model.Account.Account
 import com.martin.cleanarchitecturedemo.application.domain.model.ActivityWindow;
 import com.martin.cleanarchitecturedemo.application.domain.model.Money;
 
+/**
+ * AccountTestData is a test data builder for {@link Account}.
+ */
 public class AccountTestData {
 
   public static AccountBuilder defaultAccount() {

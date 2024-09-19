@@ -6,6 +6,9 @@ import com.martin.cleanarchitecturedemo.application.domain.model.Activity.Activi
 import com.martin.cleanarchitecturedemo.application.domain.model.Money;
 import java.time.LocalDateTime;
 
+/**
+ * Test data for {@link Activity}.
+ */
 public class ActivityTestData {
 
 	public static ActivityBuilder defaultActivity(){

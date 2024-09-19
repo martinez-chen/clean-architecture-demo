@@ -12,6 +12,7 @@ import lombok.NonNull;
  * A window of account activities.
  */
 public class ActivityWindow {
+
   /**
    * The list of account activities within this window.
    */
@@ -29,7 +30,8 @@ public class ActivityWindow {
 
   /**
    * The timestamp of the last activity within this window.
-   * @return
+   *
+   * @return The timestamp of the last activity within this window.
    */
   public LocalDateTime getEndTimestamp() {
     return activities.stream()
@@ -40,6 +42,7 @@ public class ActivityWindow {
 
   /**
    * Calculates the balance by summing up the values of all activities within this window.
+   * <p>
    * 翻譯：通過將此窗口中所有活動的值相加來計算餘額。
    */
   public Money calculateBalance(Account.AccountId accountId) {

@@ -7,6 +7,9 @@ import java.math.BigInteger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * 測試 SendMoneyCommand 的驗證
+ */
 class SendMoneyCommandTest {
 
     @Test

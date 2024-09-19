@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 用戶帳戶 JPA 實體。
+ */
 @Entity
 @Table(name = "account")
 @Data
